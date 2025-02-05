@@ -1,0 +1,28 @@
+The correct approach is to apply the pseudo-selector classes directly in your HTML, rather than through the `@apply` directive. This ensures that Tailwind CSS properly handles the styles for the different states.
+
+```html
+<button class="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+  Hover Me
+</button>
+```
+
+Alternatively, you can create separate classes for the base and hover states and apply them individually:
+
+```css
+/* Tailwind directives */
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded;
+  }
+  .btn-primary-hover {
+    @apply bg-blue-700;
+  }
+}
+```
+
+```html
+<button class="btn-primary hover:btn-primary-hover">
+  Hover Me
+</button>
+```
+This method offers better separation of concerns and improves maintainability.
